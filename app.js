@@ -10,9 +10,7 @@ class WebAudioStreamer {
     try {
       this.audioContext = new (window.AudioContext ||
         window.webkitAudioContext)();
-      const response = await fetch(
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-      );
+      const response = await fetch("/audio/2");
       const arrayBuffer = await response.arrayBuffer();
       const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
 
@@ -58,7 +56,7 @@ class HLSStreamer {
     if (Hls.isSupported()) {
       this.hls = new Hls();
       // Using a public HLS stream for demo
-      this.hls.loadSource("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8");
+      this.hls.loadSource("/audio/hls");
       this.hls.attachMedia(this.audio);
 
       this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
@@ -74,7 +72,7 @@ class HLSStreamer {
       });
     } else if (this.audio.canPlayType("application/vnd.apple.mpegurl")) {
       // For Safari native HLS support
-      this.audio.src = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
+      this.audio.src = "/audio/hls";
       this.audio.play();
       updateStatus("hls", "再生中 (Native)", "playing");
     } else {
@@ -127,9 +125,7 @@ class MSEStreamer {
   }
 
   async fetchAndAppendChunks() {
-    const response = await fetch(
-      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-    );
+    const response = await fetch("/audio/2");
     const reader = response.body.getReader();
 
     while (true) {
@@ -166,8 +162,7 @@ class HTML5Streamer {
   }
 
   start() {
-    this.audio.src =
-      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3";
+    this.audio.src = "/audio/3";
     this.audio.play();
     updateStatus("html5", "再生中", "playing");
 
@@ -205,9 +200,7 @@ class ChunkedStreamer {
       updateStatus("chunked", "チャンクを読み込み中...", "loading");
 
       // Simulate chunked delivery
-      const response = await fetch(
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
-      );
+      const response = await fetch("/audio/4");
       const arrayBuffer = await response.arrayBuffer();
 
       // Split into chunks (simulate)
