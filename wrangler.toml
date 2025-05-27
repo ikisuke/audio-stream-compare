@@ -1,0 +1,7 @@
+name = "audio-stream-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+name = "audio-stream-proxy"
+route = "https://your-subdomain.workers.dev/*"

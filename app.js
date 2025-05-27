@@ -1,3 +1,6 @@
+// Configuration for Workers endpoint
+const WORKER_URL = "https://audio-stream-proxy.ikisuketestapp.workers.dev"; // Replace with your Workers URL
+
 // Web Audio API Streaming Implementation
 class WebAudioStreamer {
   constructor() {
@@ -10,7 +13,7 @@ class WebAudioStreamer {
     try {
       this.audioContext = new (window.AudioContext ||
         window.webkitAudioContext)();
-      const response = await fetch("/audio/2");
+      const response = await fetch(`${WORKER_URL}/audio/2`);
       const arrayBuffer = await response.arrayBuffer();
       const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
 
@@ -56,7 +59,7 @@ class HLSStreamer {
     if (Hls.isSupported()) {
       this.hls = new Hls();
       // Using a public HLS stream for demo
-      this.hls.loadSource("/audio/hls");
+      this.hls.loadSource(`https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8`);
       this.hls.attachMedia(this.audio);
 
       this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
@@ -72,7 +75,7 @@ class HLSStreamer {
       });
     } else if (this.audio.canPlayType("application/vnd.apple.mpegurl")) {
       // For Safari native HLS support
-      this.audio.src = "/audio/hls";
+      this.audio.src = `https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8`;
       this.audio.play();
       updateStatus("hls", "再生中 (Native)", "playing");
     } else {
@@ -125,7 +128,7 @@ class MSEStreamer {
   }
 
   async fetchAndAppendChunks() {
-    const response = await fetch("/audio/2");
+    const response = await fetch(`${WORKER_URL}/audio/2`);
     const reader = response.body.getReader();
 
     while (true) {
@@ -162,7 +165,7 @@ class HTML5Streamer {
   }
 
   start() {
-    this.audio.src = "/audio/3";
+    this.audio.src = `${WORKER_URL}/audio/3`;
     this.audio.play();
     updateStatus("html5", "再生中", "playing");
 
@@ -200,7 +203,7 @@ class ChunkedStreamer {
       updateStatus("chunked", "チャンクを読み込み中...", "loading");
 
       // Simulate chunked delivery
-      const response = await fetch("/audio/4");
+      const response = await fetch(`${WORKER_URL}/audio/4`);
       const arrayBuffer = await response.arrayBuffer();
 
       // Split into chunks (simulate)
