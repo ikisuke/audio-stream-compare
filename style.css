@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+}
+
+.method-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.method-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.method-card h2 {
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.method-card p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.play-btn, .stop-btn {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.play-btn:hover:not(:disabled) {
+    background-color: #2980b9;
+}
+
+.stop-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.stop-btn:hover:not(:disabled) {
+    background-color: #c0392b;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.status {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 5px 15px;
+    background-color: #ecf0f1;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.status.playing {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.status.loading {
+    background-color: #f39c12;
+    color: white;
+}
+
+.status.error {
+    background-color: #e74c3c;
+    color: white;
+}
+
+audio {
+    outline: none;
+}
+
+progress {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #ecf0f1;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #3498db;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .method-card {
+        padding: 20px;
+    }
+    
+    .play-btn, .stop-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .status {
+        display: block;
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "audio-stream-compare",
+  "version": "1.0.0",
+  "description": "Compare various audio streaming methods",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "build": "echo 'No build required for static site'"
+  },
+  "keywords": ["audio", "streaming", "webaudio", "hls", "mse"],
+  "author": "",
+  "license": "MIT"
+}

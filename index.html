@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Streaming Methods Comparison</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>音声ストリーミング方式の比較</h1>
+        
+        <div class="method-card">
+            <h2>1. Web Audio API Streaming</h2>
+            <p>低レベルのオーディオ処理とリアルタイムストリーミング</p>
+            <button id="webAudioBtn" class="play-btn">再生</button>
+            <button id="webAudioStopBtn" class="stop-btn" disabled>停止</button>
+            <div class="status" id="webAudioStatus">待機中...</div>
+        </div>
+
+        <div class="method-card">
+            <h2>2. HLS (HTTP Live Streaming)</h2>
+            <p>Appleが開発したアダプティブビットレートストリーミング</p>
+            <button id="hlsBtn" class="play-btn">再生</button>
+            <button id="hlsStopBtn" class="stop-btn" disabled>停止</button>
+            <div class="status" id="hlsStatus">待機中...</div>
+            <audio id="hlsAudio" controls style="width: 100%; margin-top: 10px;"></audio>
+        </div>
+
+        <div class="method-card">
+            <h2>3. Media Source Extensions (MSE)</h2>
+            <p>JavaScriptでメディアストリームを動的に構築</p>
+            <button id="mseBtn" class="play-btn">再生</button>
+            <button id="mseStopBtn" class="stop-btn" disabled>停止</button>
+            <div class="status" id="mseStatus">待機中...</div>
+            <audio id="mseAudio" controls style="width: 100%; margin-top: 10px;"></audio>
+        </div>
+
+        <div class="method-card">
+            <h2>4. Basic HTML5 Audio Streaming</h2>
+            <p>標準的なHTML5オーディオ要素によるストリーミング</p>
+            <button id="html5Btn" class="play-btn">再生</button>
+            <button id="html5StopBtn" class="stop-btn" disabled>停止</button>
+            <div class="status" id="html5Status">待機中...</div>
+            <audio id="html5Audio" controls style="width: 100%; margin-top: 10px;"></audio>
+        </div>
+
+        <div class="method-card">
+            <h2>5. Chunked Audio Delivery</h2>
+            <p>オーディオファイルを分割して順次読み込み</p>
+            <button id="chunkedBtn" class="play-btn">再生</button>
+            <button id="chunkedStopBtn" class="stop-btn" disabled>停止</button>
+            <div class="status" id="chunkedStatus">待機中...</div>
+            <progress id="chunkedProgress" value="0" max="100" style="width: 100%; margin-top: 10px;"></progress>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
